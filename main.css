@@ -1,0 +1,16 @@
+.content {
+    text-align: center;
+    font-size: 3em;
+}
+
+#grid {
+    width: 750px;
+    height: 750px;
+    background-color: #eee;
+    display: grid;
+    margin: 0 auto;
+}
+
+.square {
+    border: 1px dotted black;
+}
