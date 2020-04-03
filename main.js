@@ -1,3 +1,6 @@
+let n = 20;
+let erase = false;
+
 function createGrid(n) {
     const grid = document.getElementById('grid');
     grid.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
@@ -12,10 +15,14 @@ function createGrid(n) {
     }
 
     // Change the color of the boxes when hover
-    const squares = document.querySelectorAll('div.square');
+    const squares = document.querySelectorAll('div.square')
     squares.forEach(square => {
         square.addEventListener('mouseover', function(e) {
-            e.target.style.backgroundColor = getRandomColor();
+            if (erase === true) {
+                e.target.style.backgroundColor = '#eee';
+            } else {
+                e.target.style.backgroundColor = getRandomColor(); 
+            }
         })
     });
 }
@@ -29,4 +36,40 @@ function getRandomColor() {
     return color;
 }
 
-createGrid(20);
+function resize() {
+    n = prompt('What size grid would you like?');
+    while (isNaN(n)) {
+        n = prompt('Sorry. What size grid would you like?');
+    }
+    clear();
+    resetGrid();
+    createGrid(n);
+}
+
+// Remove all child elements... 
+// https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+function resetGrid() {
+    const grid = document.getElementById('grid');
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
+}
+
+function clear() {
+    const squares = document.querySelectorAll('div.square');
+    squares.forEach(square => {square.style.backgroundColor = "#eee"});
+}
+
+// Resize button
+const resizeBtn = document.getElementById('resize');
+resizeBtn.addEventListener('click', resize);
+
+// Clear button
+const clearBtn = document.getElementById('clear');
+clearBtn.addEventListener('click', clear);
+
+// Erase button
+const eraseBtn = document.getElementById('erase');
+eraseBtn.addEventListener('click', () => {erase = !erase});
+
+createGrid(n);
