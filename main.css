@@ -1,8 +1,17 @@
-.content {
+/* Main styling */
+body {
     text-align: center;
+    background-image: url("webb-dark/webb-dark.png");
+}
+
+.content {
+    color: #2d99d2;
+    text-align: center;
+    text-decoration: underline;
     font-size: 3em;
 }
 
+/* The grid */
 #grid {
     width: 750px;
     height: 750px;
@@ -12,5 +21,15 @@
 }
 
 .square {
-    border: 1px dotted black;
+    border: 1px solid rgba(0, 0, 0, .75);
+}
+
+/* Buttons */
+.button {
+    padding: 15px 42px;
+    margin: 0 15px 20px 0;
+    background-color: #2d99d2;
+    border: 1px solid rgba(0, 0, 0, .75);
+    border-radius: 5px;
+    cursor: pointer;
 }
